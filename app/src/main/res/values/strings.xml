@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BeerUthus</string>
+    <string name="save_text">Save</string>
+    <string name="note_text">Note</string>
+    <string name="saving_text">Saving</string>
+    <string name="update_text">Update</string>
+    <string name="delete_text">Delete</string>
+    <string name="empty_text">""</string>
+
+</resources>

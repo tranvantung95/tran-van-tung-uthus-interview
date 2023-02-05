@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="beer"
+            type="com.example.beeruthus.model.Beer" />
+
+        <variable
+            name="listener"
+            type="com.example.beeruthus.ui.adapter.BeerEvent" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBeer"
+            beer="@{beer}"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/edtNote"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBeerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{beer.name}"
+            app:layout_constraintBottom_toTopOf="@id/tvBeePrice"
+            app:layout_constraintEnd_toStartOf="@id/btSave"
+            app:layout_constraintStart_toEndOf="@id/ivBeer"
+            app:layout_constraintTop_toTopOf="@id/ivBeer"
+            tools:text="Beer Name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBeePrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@{beer.price}"
+            app:layout_constraintBottom_toBottomOf="@id/ivBeer"
+            app:layout_constraintEnd_toStartOf="@id/btSave"
+            app:layout_constraintStart_toEndOf="@id/ivBeer"
+            app:layout_constraintTop_toBottomOf="@id/tvBeerName"
+            tools:text="Beer Price" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btSave"
+            stringResource="@{beer.stateText}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() ->listener.onSave(beer)}"
+            android:visibility="@{beer.showSaveButton() ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/edtNote"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivBeer"
+            tools:text="Save" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="@{beer.showSaveButton()}"
+            android:hint="@string/note_text"
+            android:text="@={beer.note}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
